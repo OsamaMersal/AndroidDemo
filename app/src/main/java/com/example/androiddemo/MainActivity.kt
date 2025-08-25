@@ -12,6 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.androiddemo.ui.theme.AndroidDemoTheme
+import androidx.compose.ui.res.stringResource
+import com.example.androiddemo.R
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +34,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
+    val hello = stringResource(id = R.string.hello_text, name)
     Text(
-        text = "Hello $name!",
+        text = hello,
         modifier = modifier
     )
 }
