@@ -12,8 +12,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.androiddemo.ui.theme.AndroidDemoTheme
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.pluralStringResource
 import com.example.androiddemo.R
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,10 +29,22 @@ class MainActivity : ComponentActivity() {
         setContent {
             AndroidDemoTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    Column(
+                        modifier = Modifier
+                            .padding(innerPadding)
+                            .padding(16.dp)
+                    ) {
+                        // keep Greeting
+                        Greeting(name = "Android")
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        // placeholders demo
+                        Header(name = "PTC", points = 42)
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                    }
                 }
             }
         }
@@ -46,5 +65,16 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 fun GreetingPreview() {
     AndroidDemoTheme {
         Greeting("Android")
+    }
+}
+
+@Composable
+fun Header(name: String, points: Int) {
+    val welcome = stringResource(R.string.welcome_user, name)
+    val summary = stringResource(R.string.points_summary, name, points)
+
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text(welcome)
+        Text(summary)
     }
 }
