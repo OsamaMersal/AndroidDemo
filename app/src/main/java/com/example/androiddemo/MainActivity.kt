@@ -44,6 +44,9 @@ class MainActivity : ComponentActivity() {
 
                         Spacer(modifier = Modifier.height(16.dp))
 
+                        InboxCount(count = 1)
+                        InboxCount(count = 5)
+
                     }
                 }
             }
@@ -77,4 +80,10 @@ fun Header(name: String, points: Int) {
         Text(welcome)
         Text(summary)
     }
+}
+
+@Composable
+fun InboxCount(count: Int) {
+    val text = pluralStringResource(R.plurals.inbox_count, count, count)
+    Text(text)
 }
